@@ -11,10 +11,12 @@ import time
 DEVICEADDR = 'AA:BB:CC:DD:EE:FF'  # bluetooth device address
 CHECKINTERVAL = 1  # device pinged at this interval (seconds) when screen is unlocked
 CHECKREPEAT = 1  # device must be unreachable this many times to lock or unlock
+FREEZETIME = 60  # do not re-lock after unlock for this many seconds
 #UNLOCKUSER = 'user'  # user to auto unlock at presence
-mode = 'unlocked'
 
 if __name__ == '__main__':
+    mode = 'unlocked'
+    last_unlocked = 0;
     while True:
         tries = 0
         while tries < CHECKREPEAT:
@@ -31,6 +33,7 @@ if __name__ == '__main__':
         if process.returncode == 0 and mode == 'locked':
             mode = 'unlocked'
             print('Device ' + mode + '.')
+            last_unlocked = time.time()
             # This _does_ unlock the session, but it remains on tty8 (lockscreen).
             # sudo loginctl unlock-sessions
             subprocess.Popen(['sudo', 'loginctl', 'unlock-sessions'], shell=False, stdout=subprocess.PIPE)
@@ -41,7 +44,7 @@ if __name__ == '__main__':
                 # dm-tool switch-to-user UNLOCKUSER
                 #subprocess.Popen(['dm-tool', 'switch-to-user', UNLOCKUSER], shell=False, stdout=subprocess.PIPE)
 
-        if process.returncode == 1 and mode == 'unlocked':
+        if process.returncode == 1 and mode == 'unlocked' and last_unlocked < time.time() - FREEZETIME:
             mode = 'locked'
             print('Device ' + mode + '.')
             # sudo loginctl lock-sessions
