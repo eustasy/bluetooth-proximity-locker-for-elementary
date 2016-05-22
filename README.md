@@ -17,3 +17,7 @@ Here's how it works:
 4. As soon as it pings successfully (you're back in range) the screen will automatically unlock again (WIP).
 
 Replication of functionality of [blueproximity](https://launchpad.net/blueproximity) as this does not work in Freya. Likely to move to that in Loki.
+
+### Roadmap
+- Ignore locking attempts for separate duration after unlock.
+- Implement plug patch for bluetooth locking in `Security & Privacy` > `Locking`
