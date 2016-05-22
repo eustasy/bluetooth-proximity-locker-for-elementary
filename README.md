@@ -19,5 +19,7 @@ Here's how it works:
 Replication of functionality of [blueproximity](https://launchpad.net/blueproximity) as this does not work in Freya. Likely to move to that in Loki.
 
 ### Roadmap
-- Ignore locking attempts for separate duration after unlock.
-- Implement plug patch for bluetooth locking in `Security & Privacy` > `Locking`
+- [x] Fix slow locking on Freya.
+- [x] Fix unlocking not switching to mainscreen.
+- [x] Ignore locking attempts for separate duration after unlock.
+- [ ] Implement plug patch for bluetooth locking in `Security & Privacy` > `Locking`
