@@ -16,7 +16,9 @@ Here's how it works:
 3. Once the device is out of range, the script pings every second attempting to find the device again.
 4. As soon as it pings successfully (you're back in range) the screen will automatically unlock again (WIP).
 
-Replication of functionality of [blueproximity](https://launchpad.net/blueproximity) as this does not work in Freya. Likely to move to that in Loki.
+### References
+- [BlueProximity](https://launchpad.net/blueproximity)
+- [Modifying BlueProximity to work on Ubuntu 14.04 LTS](http://www.mljenkins.com/2016/01/24/blueproximity-on-ubuntu-14-04-lts/)
 
 ### Roadmap
 - [x] Fix slow locking on Freya.
